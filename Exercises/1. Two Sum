@@ -1,0 +1,16 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+      for (int i=0;i<nums.length;i++){
+        int j = i+1;
+        do{
+            if (target== nums[i] + nums[j]){ 
+        return new int[] {i,j};
+        
+      }j++;}
+        while (j<nums.length);
+    }
+          throw new IllegalArgumentException("No hay solucion o hay mas de 1 solucion");
+    }
+
+    
+}
