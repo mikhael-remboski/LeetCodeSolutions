@@ -1,0 +1,13 @@
+class Solution {
+    public int minPartitions(String n) {
+        int result = 0;
+        int numberPosI;
+        for(int i = 0; i < n.length(); i++){
+            numberPosI  = Integer.parseInt(Character.toString(n.charAt(i)));
+            if(numberPosI > result){
+                result = numberPosI;
+            }
+        }
+        return result;
+    }
+}
