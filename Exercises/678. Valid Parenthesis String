@@ -1,0 +1,41 @@
+class Solution {
+
+    public boolean checkValidString(String s) {
+        int igualador1=0, igualador2=0;
+         if (s.startsWith(")") || s.endsWith("(")) {
+            return false;
+        }
+        if (s.length() == 0) {
+            return true;
+        }
+        if (s == "*") {
+            return true;
+        }
+        for (int i = 0 ; i < s.length(); i++) {
+        if (s.charAt(i) == '(') {
+            igualador1--;
+            igualador2--;
+        }
+        else if (s.charAt(i) == ')'){
+            if (igualador1 < 0){
+               igualador1++; 
+            }  
+               igualador2++;
+           
+        }
+            else if (s.charAt(i) == '*'){
+             if (igualador1 < 0){
+            igualador1++; 
+             }
+            igualador2--;             
+        }
+            if (igualador2 > 0){
+            return false;
+        }  
+        }  
+        if (igualador1 == 0){
+            return true;
+        }
+        return false;
+    }
+}
