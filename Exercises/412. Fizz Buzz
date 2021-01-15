@@ -1,0 +1,25 @@
+class Solution {
+    public List<String> fizzBuzz(int n) {
+         List<String> Lista = new ArrayList<String>(); 
+        for (int i = n; i > 0 ; i--){
+            if (n==1){
+                Lista.add(Integer.toString(i));
+            }
+            else if (0 ==  i % 3 && 0 ==  i% 5){
+                Lista.add("FizzBuzz");
+            }
+            else if (0 == i % 3){
+                Lista.add("Fizz");
+            }
+            else if (0== i % 5){
+                Lista.add("Buzz");
+            }
+            else {
+                Lista.add(Integer.toString(i));
+                
+            }
+        }
+        Collections.reverse(Lista);
+        return Lista;
+    }
+}
