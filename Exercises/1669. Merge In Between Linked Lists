@@ -1,0 +1,28 @@
+class Solution {
+    public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
+        ListNode p1 = list1;
+        ListNode p2 = list2;
+        int count1 = 0, count2 = 0;
+        while (p2.next != null) {
+            p2 = p2.next;
+        }
+        while (p1 != null) {
+            if (count2 == b) {
+                break;
+            }
+            p1 = p1.next;
+            count2++;
+        }
+        p2.next = p1.next;
+        ListNode finalPointer = list1;
+        while (finalPointer != null) {
+            if ((count1+1) == a) {
+                break;
+            }
+            finalPointer = finalPointer.next;
+            count1++;
+        }
+        finalPointer.next = list2;
+        return list1;
+    }
+}
