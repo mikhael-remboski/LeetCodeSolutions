@@ -1,0 +1,31 @@
+function restoreIpAddresses(s: string): string[] {
+    const result: string[] = [];
+
+    const isValid = (s: string): boolean => {
+        const isValidNumber = +s <= 255 && +s >= 0;
+        const startWith0X = s.length > 1 && s.startsWith('0');
+        return isValidNumber && !startWith0X;
+    };
+
+    const dfs = (current: number, parts: number, path: string[]): void => {
+        if (parts === 4) {
+            if (current === s.length) {
+                result.push(path.join('.'));
+            }
+            return;
+        }
+
+        for (let i = 1; i <= 3 && current + i <= s.length; i++) {
+            const segment = s.substring(current, current + i);
+            if (isValid(segment)) {
+                path.push(segment);
+                dfs(current + i, parts + 1, path);
+                path.pop();
+            }
+        }
+    };
+
+    dfs(0, 0, []);
+
+    return result;
+}
