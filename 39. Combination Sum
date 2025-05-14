@@ -1,0 +1,27 @@
+function combinationSum(candidates: number[], target: number): number[][] {
+  const result: number[][] = [];
+
+  const isValid = (actualNumber: number, target: number): boolean => {
+    return actualNumber <= target;
+  };
+
+  const dfs = (index: number, target: number, path: number[]): void => {
+    if (target === 0) {
+      result.push([...path]);
+      return;
+    }
+
+    for (let i = index; i < candidates.length; i++) {
+      const current = candidates[i]!;
+      if (isValid(current, target)) {
+        path.push(current);
+        dfs(i, target - current, path);
+        path.pop();
+      }
+    }
+  };
+
+  dfs(0, target, []);
+
+  return result;
+}
