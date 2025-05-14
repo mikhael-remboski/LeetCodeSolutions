@@ -1,0 +1,20 @@
+function searchRange(nums: number[], target: number): number[] {
+    const output = []
+    if (nums.length == 0) {
+        return [-1, -1]
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+        if (target == nums[i]) {
+            output.push(i);
+        }
+    }
+    if (output.length == 0) {
+        return [-1, -1]
+    }
+    const start = Math.min(...output);
+    const end = Math.max(...output);
+
+    return [start, end]
+
+};

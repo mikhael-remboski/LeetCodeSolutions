@@ -1,0 +1,46 @@
+function isValidSudoku(board: string[][]): boolean {
+    function hasDuplicate(arr: string[]): boolean {
+        const set = new Set<string>();
+        for (let num of arr) {
+            if (num !== '.') {
+                if (set.has(num)) {
+                    return true;
+                }
+                set.add(num);
+            }
+        }
+        return false;
+    }
+
+    for (let i = 0; i < 9; i++) {
+        if (hasDuplicate(board[i])) {
+            return false;
+        }
+    }
+
+    for (let j = 0; j < 9; j++) {
+        const column = [];
+        for (let i = 0; i < 9; i++) {
+            column.push(board[i][j]);
+        }
+        if (hasDuplicate(column)) {
+            return false;
+        }
+    }
+
+    for (let block = 0; block < 9; block++) {
+        const blockRow = Math.floor(block / 3) * 3;
+        const blockCol = (block % 3) * 3;
+        const blockArray = [];
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                blockArray.push(board[blockRow + i][blockCol + j]);
+            }
+        }
+        if (hasDuplicate(blockArray)) {
+            return false;
+        }
+    }
+
+    return true;
+}

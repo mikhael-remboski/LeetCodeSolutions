@@ -1,0 +1,6 @@
+function isPalindrome(x: number): boolean {
+    const xString = x.toString()
+    const xStringReversed= xString.split("").reverse().join("")
+    const result = xString === xStringReversed
+    return result
+};

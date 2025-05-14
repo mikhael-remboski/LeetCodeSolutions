@@ -1,0 +1,28 @@
+
+function romanToInt(s: string): number {
+
+ const romanMap: Record<string, number> = {
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000,
+    };
+    let startNumber = 0;
+
+
+    for (let i = 0; i < s.length; i++) {
+        const nextRoman = s[i + 1];
+        const actualRoman = s[i];
+        const next = nextRoman ? romanMap[nextRoman] : undefined;
+        const actual = romanMap[actualRoman!];
+        if (next && actual < next) {
+            startNumber -= +actual;
+        } else {
+            startNumber += +actual;
+        }
+    }
+    return startNumber;
+}

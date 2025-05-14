@@ -1,0 +1,34 @@
+function partition(s: string): string[][] {
+  const result: string[][] = [];
+  const path: string[] = [];
+
+  const isPalindrome = (start: number, end: number): boolean => {
+    while (start < end) {
+      if (s[start] !== s[end]) {
+        return false;
+      }
+      start++;
+      end--;
+    }
+    return true;
+  };
+
+  const dfs = (start: number): void => {
+    if (start === s.length) {
+      result.push([...path]);
+      return;
+    }
+
+    for (let end = start; end < s.length; end++) {
+      if (isPalindrome(start, end)) {
+        path.push(s.substring(start, end + 1));
+        dfs(end + 1);
+        path.pop();
+      }
+    }
+  };
+
+  dfs(0);
+
+  return result;
+}
